@@ -7,7 +7,8 @@
 
 ![トップ画面](./screenshot/top.png)  
 ![クイズ一覧画面](./screenshot/list.png)  
-（※ 任意で `screenshot/` フォルダに画像を追加してください）
+![クイズ出題画面](./screenshot/detail.png)  
+
 
 ---
 
