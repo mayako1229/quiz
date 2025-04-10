@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>クイズの登録</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">クイズの登録</h1>
+        <form th:action="@{/quizzes/register}" method="POST">
+            <div class="form-group">
+                <label for="question">問題:</label>
+                <textarea id="question" name="question" class="textarea-field" th:value="${question}" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="choice1">選択肢1:</label>
+                <input type="text" id="choice1" name="choice1" class="input-field" th:value="${choice1}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="choice2">選択肢2:</label>
+                <input type="text" id="choice2" name="choice2" class="input-field" th:value="${choice2}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="choice3">選択肢3:</label>
+                <input type="text" id="choice3" name="choice3" class="input-field" th:value="${choice3}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="choice4">選択肢4:</label>
+                <input type="text" id="choice4" name="choice4" class="input-field" th:value="${choice4}" required />
+            </div>
+
+            <div class="form-group">
+                <label for="answer">正解:</label>
+                <select id="answer" name="answer" class="select-field" required>
+                    <option value="1">選択肢1</option>
+                    <option value="2">選択肢2</option>
+                    <option value="3">選択肢3</option>
+                    <option value="4">選択肢4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">解説:</label>
+                <textarea id="description" name="description" class="textarea-field" th:value="${description}"></textarea>
+            </div>
+			<div class="btn-wrapper">
+				<a th:href="@{/quizzes/list}" class="cancel-btn">戻る</a>
+            	<button class="register-btn" type="submit">登録</button>
+			</div>
+        </form>
+    </div>
+</body>
+</html>

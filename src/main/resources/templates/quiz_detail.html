@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Javaクイズ</title>
+	<!-- CSSファイルをリンク -->
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+	<header>
+		<h1 th:text="${currentIndex} + 1 + '問目'" class="quiz-title"></h1>
+		<div th:utext="${quiz.question}" class="quiz-text"></div>
+	</header>
+	<main>
+		<form id="quizForm" method="post" class="quiz-form">
+			<input type="hidden" th:value="${quiz.id}" name="id">
+			<input type="hidden" value="" name="choiceNum" id="choiceNumHidden">
+			<ol class="list">
+				<li th:each="choiceMap, iterStat : ${quiz.choices}">
+					<div th:each="entry : ${choiceMap.entrySet()}">
+						<input type="radio" th:value="${entry.key}" th:data-choice-num="${iterStat.count}" name="choice"
+							th:id="'choice' + ${entry.key}" hidden />
+						<label th:for="'choice' + ${entry.key}">
+							<span class="choice-number" th:text="${iterStat.count} + '.'"></span>
+							<span class="choice-text" th:text="${entry.value}"></span>
+						</label>
+					</div>
+				</li>
+			</ol>
+			<div id="answer-btn"><button type="submit" disabled>回答する</button></div>
+			<div id="next" style="display: none;"><a th:href="@{/quizzes/next}">次へ</a></div>
+		</form>
+		<!-- モーダル -->
+		<modal id="resultModal" class="modal">
+			<div id="modalContent" class="modal-content">
+				<span class="close-btn">&times;</span>
+				<h2 id="modalResultText"></h2>
+				<p><strong>あなたの回答：</strong> <span id="yourAnswer"></span></p>
+				<p><strong>正解：</strong> <span id="correctAnswer"></span></p>
+				<p><strong>解説：</strong> <span id="description"></span></p>
+			</div>
+		</modal>
+	</main>
+	<script th:src="@{/js/quiz-answer-modal.js}"></script>
+</body>
+
+</html>

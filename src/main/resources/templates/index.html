@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>クイズTOP</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	<!-- Font Awesome（CDN） -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+	<div class="top-container">
+		<h1 class="page-title">クイズアプリへようこそ！</h1>
+		<div class="button-grid">
+			<a th:href="@{/quizzes}" class="square-btn">
+				<i class="fas fa-play"></i>
+				はじめる
+			</a>
+			<button class="square-btn" id="quizListButton">
+				<i class="fas fa-list"></i>
+				クイズ一覧
+			</button>
+		</div>
+	</div>
+	<!-- モーダル -->
+	<div id="passwordModal" class="modal">
+		<div class="modal-content">
+			<span id="closeModal" class="close-btn">&times;</span>
+			<h2>パスワード認証</h2>
+			<p>クイズ一覧を見るにはパスワードが必要です。</p>
+			<input type="password" id="passwordInput" class="input-field" placeholder="パスワードを入力" />
+			<div class="btn-wrapper" style="margin-top: 20px;">
+				<button id="confirmButton" class="register-btn">確認</button>
+				<button id="cancelButton" class="cancel-btn">キャンセル</button>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/quiz-modal.js}"></script>
+</body>
+
+</html>

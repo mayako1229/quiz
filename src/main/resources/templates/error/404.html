@@ -1,0 +1,16 @@
+<!-- resources/templates/error/404.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ページが見つかりません</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>404 - ページが見つかりません</h1>
+        <p>お探しのページは存在しないか、移動された可能性があります。</p>
+        <a th:href="@{/}" class="register-btn">トップページへ戻る</a>
+    </div>
+</body>
+</html>

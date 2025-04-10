@@ -1,0 +1,515 @@
+/* 全体のスタイル */
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #f7f7f7;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+
+/* TOPページ */
+.top-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.button-grid {
+	display: flex;
+	gap: 40px;
+}
+
+.square-btn {
+	width: 150px;
+	height: 150px;
+	background-color: #4CAF50;
+	color: white;
+	font-size: 18px;
+	border: none;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.square-btn:hover {
+	background-color: #45a049;
+	transform: scale(1.05);
+}
+
+.square-btn i {
+	font-size: 48px;
+	margin-bottom: 10px;
+}
+
+.page-title {
+	margin-bottom: 40px;
+	font-size: 28px;
+}
+
+header {
+	width: 60%;
+	margin: 30px auto 0 auto;
+	display: flex;
+}
+
+.quiz-title {
+	/*            text-align: center;*/
+	color: #4CAF50;
+	width: 4em;
+
+}
+
+.quiz-text {
+	padding-left: 70px;
+	display: flex;
+	align-items: center;
+	min-height: 70px;
+}
+
+/* クイズフォームのスタイル */
+.quiz-form {
+	width: 60%;
+	margin: 30px auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list {
+	list-style: none;
+	padding: 0;
+}
+
+ol {
+	padding-left: 20px;
+}
+
+li {
+	margin-bottom: 15px;
+}
+
+label {
+	font-size: 18px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+input[type="radio"] {
+	margin-right: 10px;
+	transform: scale(1.2);
+}
+
+span {
+	font-size: 16px;
+	color: #555;
+}
+
+.choice-number {
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #FF5722;
+	/* オレンジ系で目立たせる */
+	margin-right: 10px;
+	display: inline-block;
+	/* width: 2em; 整列のための固定幅 */
+	text-align: right;
+}
+
+.choice-text {
+	font-size: 1em;
+	color: #333;
+}
+
+
+/* 回答ボタンのスタイル */
+#answer-btn {
+	text-align: center;
+	margin-top: 20px;
+}
+
+#answer-btn button {
+	padding: 10px 20px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+#answer-btn button:disabled {
+	background-color: #ccc;
+	/* グレー系にして */
+	color: #666;
+	/* 文字色も暗く */
+	cursor: not-allowed;
+	/* マウスカーソルで「使えない感」 */
+	opacity: 0.6;
+	/* 少し透明感を出す */
+	box-shadow: none;
+	/* シャドウがある場合はなくすと弱く見える */
+	transition: opacity 0.2s ease;
+}
+
+#answer-btn button:hover(not:disabled) {
+	background-color: #45a049;
+}
+
+/* 次へボタンのスタイル */
+#next {
+	text-align: center;
+}
+
+#next a {
+	display: inline-block;
+	text-align: center;
+	margin-top: 20px;
+	padding: 10px 20px;
+	background-color: #2196F3;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 18px;
+	transition: background-color 0.3s;
+}
+
+#next a:hover {
+	background-color: #0b7dda;
+}
+
+/* 結果の表示スタイル */
+#result {
+	margin-top: 30px;
+	font-size: 18px;
+}
+
+#result p {
+	margin: 10px 0;
+}
+
+/* 結果の○×表示 */
+.correct {
+	color: green;
+	font-weight: bold;
+}
+
+.incorrect {
+	color: red;
+	font-weight: bold;
+}
+
+/* ラジオボタンは非表示にする */
+input[type="radio"] {
+	display: none;
+}
+
+/* ボタン風に装飾されたラベル */
+input[type="radio"]+label {
+	display: inline-block;
+	padding: 10px 20px;
+	margin: 5px;
+	border: 2px solid #007BFF;
+	border-radius: 8px;
+	background-color: #f0f8ff;
+	color: #007BFF;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+/* ホバー時 */
+input[type="radio"]+label:hover {
+	background-color: #e0efff;
+}
+
+/* チェックされたとき（押された状態） */
+input[type="radio"]:checked+label {
+	background-color: #007BFF;
+	color: white;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+	transform: translateY(1px);
+}
+
+
+/* モーダル全体 */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* モーダルの中身 */
+.modal-content {
+	background-color: #fff;
+	margin: 10% auto;
+	padding: 30px;
+	width: 70%;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	position: relative;
+	text-align: left;
+	font-size: 1.2em;
+}
+
+/* 閉じるボタン */
+.close-btn {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	font-size: 2em;
+	cursor: pointer;
+	color: #888;
+}
+
+.close-btn:hover {
+	color: #000;
+}
+
+/* スマホ画面対応 */
+@media (max-width: 600px) {
+
+	header {
+		flex-direction: column;
+	}
+
+	header,
+	form {
+		width: 90%;
+	}
+
+	.modal-content {
+		width: 90%;
+		/* スマホでは画面幅の90% */
+		margin: 20% auto;
+		/* 上下マージンを調整 */
+		padding: 20px;
+	}
+}
+
+/* ヘッダーのスタイル */
+.page-title {
+	text-align: center;
+	color: #333;
+	margin-top: 20px;
+}
+
+/* 回答履歴がない場合 */
+.no-history p {
+	text-align: center;
+	font-size: 20px;
+	color: #333;
+}
+
+/* テーブルのコンテナ */
+.history-table-container {
+	margin: 20px auto;
+	width: 80%;
+}
+
+.score-text {
+	text-align: center;
+	font-size: 20px;
+}
+
+/* テーブルのスタイル */
+.history-table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #fff;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* テーブルのヘッダー */
+.table-header {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px;
+	text-align: center;
+}
+
+/* テーブルのデータセル */
+.table-data {
+	text-align: center;
+	padding: 8px;
+	border: 1px solid #ddd;
+}
+
+/* 正解/不正解の表示 */
+.correct {
+	font-weight: bold;
+	font-size: 20px;
+	color: green;
+}
+
+.incorrect {
+	font-weight: bold;
+	font-size: 20px;
+	color: red;
+}
+
+/* リトライボタンのスタイル */
+.retry-button-container {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.retry-button {
+	display: inline-block;
+	padding: 10px 20px;
+	text-decoration: none;
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.retry-button:hover {
+	background-color: #45a049;
+}
+
+/* モバイル対応 */
+@media (max-width: 600px) {
+	.history-table {
+		width: 100%;
+	}
+
+	.table-header,
+	.table-data {
+		font-size: 14px;
+	}
+}
+
+/*登録画面*/
+/* 全体のスタイル */
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+	text-align: center;
+	color: #333;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #555;
+}
+
+.input-field,
+.textarea-field,
+.select-field {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	width: 90%;
+}
+
+.textarea-field {
+	height: 120px;
+}
+
+.register-btn {
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	width: 50px;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+
+}
+
+.btn-wrapper {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+}
+
+.register-btn:hover {
+	background-color: #45a049;
+}
+
+.quiz-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	background-color: #fff;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-table th,
+.quiz-table td {
+	padding: 12px;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+.quiz-table th {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.even-row {
+	background-color: #f9f9f9;
+}
+
+.odd-row {
+	background-color: #ffffff;
+}
+
+.delete-btn,
+.delete-id-btn,
+.cancel-btn {
+	background-color: #e53935;
+	color: white;
+	border: none;
+	padding: 6px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.delete-btn:hover,
+.delete-id-btn:hover {
+	background-color: #c62828;
+}
+
+/* キャンセルボタン（グレー系） */
+.cancel-btn {
+	background-color: #bdc3c7;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+}
+
+#delete-form {
+	display: flex;
+	gap: 30px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>クイズ編集</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">クイズ編集</h1>
+
+        <form th:action="@{/quizzes/update}" th:object="${quiz}" method="post">
+            <!-- ID（hidden） -->
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group">
+                <label>問題文</label>
+                <textarea th:field="*{question}" class="textarea-field" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>選択肢1</label>
+                <input type="text" th:field="*{choice1}" class="input-field" required />
+            </div>
+            <div class="form-group">
+                <label>選択肢2</label>
+                <input type="text" th:field="*{choice2}" class="input-field" required />
+            </div>
+            <div class="form-group">
+                <label>選択肢3</label>
+                <input type="text" th:field="*{choice3}" class="input-field" required />
+            </div>
+            <div class="form-group">
+                <label>選択肢4</label>
+                <input type="text" th:field="*{choice4}" class="input-field" required />
+            </div>
+
+            <div class="form-group">
+                <label>正解番号（1〜4）</label>
+                <select th:field="*{answer}" class="select-field" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>解説</label>
+                <textarea th:field="*{description}" class="textarea-field"></textarea>
+            </div>
+
+            <div class="btn-wrapper">
+				<a th:href="@{/quizzes/list}" class="cancel-btn">戻る</a>
+                <button type="submit" class="register-btn">更新</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>クイズ一覧</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="title">クイズ一覧</h1>
+
+		<table class="quiz-table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>問題文</th>
+					<th>作成日</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="quiz, iterStat : ${quizList}"
+					th:class="${iterStat.index % 2 == 0} ? 'even-row' : 'odd-row'">
+					<td th:text="${quiz.id}"></td>
+					<td>
+						<a th:href="@{/quizzes/edit/{id}(id=${quiz.id})}"
+							th:text="${#strings.length(quiz.question) > 20} ? ${#strings.substring(quiz.question, 0, 20)} + '…' : ${quiz.question}"></a>
+					</td>
+					<td th:text="${#temporals.format(quiz.createdAt, 'yyyy-MM-dd')}"></td>
+					<td>
+						<button class="delete-btn" th:data-id="${quiz.id}"
+							th:data-question="${quiz.question}">削除</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="btn-wrapper">
+			<a th:href="@{/quizzes/add}" class="register-btn">追加</a>
+		</div>
+	</div>
+
+	<!-- モーダル -->
+	<div id="deleteModal" class="modal">
+		<div class="modal-content">
+			<span class="close-btn" onclick="closeModal()">&times;</span>
+			<h2>クイズ削除確認</h2>
+			<p id="modalMessage"></p>
+			<form th:action="@{/quizzes/delete}" id="delete-form" method="post">
+				<!-- ID（hidden） -->
+				<input type="hidden" name="id" value="" id="delete-id">
+				<button type="submit" id="confirmDeleteBtn" class="delete-id-btn">削除</button>
+				<button type="button" onclick="closeModal()" class="cancel-btn">キャンセル</button>
+			</form>
+		</div>
+	</div>
+	<script th:src="@{/js/quiz-delete-modal,js}"></script>
+</body>
+
+</html>

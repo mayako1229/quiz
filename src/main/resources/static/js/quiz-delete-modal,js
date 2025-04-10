@@ -1,0 +1,27 @@
+		// モーダルを開く関数
+		const openModal = (quizId, quizQuestion) => {
+			const modal = document.getElementById('deleteModal');
+			const message = document.getElementById('modalMessage');
+			message.textContent = "ID: " + quizId + " の問題「" + quizQuestion + "」を削除してよろしいですか？";
+			const confirmBtn = document.getElementById('confirmDeleteBtn');
+			const deleteForm = document.getElementById('delete-form');
+			// 削除の隠しフィールドにIDをセット
+			const deleteIdHidden = document.getElementById('delete-id');
+			deleteIdHidden.setAttribute("value", quizId);
+			modal.style.display = 'block';
+		};
+
+		// モーダルを閉じる関数
+		const closeModal = () => {
+			const modal = document.getElementById('deleteModal');
+			modal.style.display = 'none';
+		};
+
+		// 削除ボタンにイベントリスナーを追加
+		document.querySelectorAll('.delete-btn').forEach(btn => {
+			btn.addEventListener('click', () => {
+				const quizId = btn.getAttribute('data-id');
+				const quizQuestion = btn.getAttribute('data-question');
+				openModal(quizId, quizQuestion);
+			});
+		});

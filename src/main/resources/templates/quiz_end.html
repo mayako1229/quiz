@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>回答履歴</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+    <h1 class="page-title">回答履歴</h1>
+
+    <!-- answerHistoryが空でないかチェック -->
+    <div th:if="${#lists.isEmpty(answerHistory)}" class="no-history">
+        <p>回答履歴はありません。</p>
+    </div>
+
+    <!-- answerHistoryがある場合 -->
+    <div th:if="${not #lists.isEmpty(answerHistory)}" class="history-table-container">
+		<p>
+			あなたの得点は<span class="score-text" th:text="${score} + '点'"></span>です。
+        </p>
+		<table class="history-table">
+            <thead>
+                <tr>
+                    <th class="table-header">問題番号</th>
+                    <th class="table-header">あなたの回答</th>
+                    <th class="table-header">正解</th>
+                    <th class="table-header">判定</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- answerHistoryリストの各アイテムにアクセス -->
+                <tr th:each="history : ${answerHistory}" class="history-row">
+                    <td th:text="${history.index}" class="table-data"></td>
+                    <td th:text="${history.yourAnswer}" class="table-data"></td>
+                    <td th:text="${history.correctAnswer}" class="table-data"></td>
+                    <td class="table-data">
+                        <span th:if="${history.correct}" class="correct">〇</span>
+                        <span th:unless="${history.correct}" class="incorrect">×</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="retry-button-container">
+        <a th:href="@{/quizzes}" class="retry-button">もう一度</a>
+    </div>
+
+</body>
+</html>
