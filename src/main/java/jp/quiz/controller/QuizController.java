@@ -5,6 +5,7 @@ import java.util.Map;
 
 import jakarta.servlet.http.HttpSession;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jp.quiz.dto.QuizDTO;
 import jp.quiz.entity.Quiz;
+import jp.quiz.form.QuizForm;
 import jp.quiz.service.QuizService;
 
 /**
@@ -91,7 +93,12 @@ public class QuizController {
      * @return "redirect:/quizzes/list" クイズ一覧画面へのリダイレクト
      */
     @PostMapping("/register")
-    public String addQuiz(@ModelAttribute Quiz quiz, Model model) {
+    public String addQuiz(@ModelAttribute QuizForm quizForm, Model model) {
+    	
+    	Quiz quiz = new Quiz();
+    	// フォームのデータをエンティティにコピーする
+    	BeanUtils.copyProperties(quizForm, quiz, "id");//idは除外
+    	quiz.setId(null);
         quizService.addQuiz(quiz);
         return "redirect:/quizzes/list";
     }
@@ -106,7 +113,10 @@ public class QuizController {
     @GetMapping("/edit/{id}")
     public String editQuiz(@PathVariable Long id, Model model) {
         Quiz quiz = quizService.getQuizById(id);
-        model.addAttribute("quiz", quiz);
+        QuizForm quizForm = new QuizForm();
+    	// フォームのデータをエンティティにコピーする
+    	BeanUtils.copyProperties( quiz,quizForm);     
+        model.addAttribute("quiz", quizForm);
         return "quiz_edit";
     }
     
@@ -117,7 +127,10 @@ public class QuizController {
      * @return "redirect:/quizzes/list" クイズ一覧画面へのリダイレクト
      */
     @PostMapping("/update")
-    public String updateQuiz(@ModelAttribute Quiz quiz) {
+    public String updateQuiz(@ModelAttribute QuizForm quizForm) {
+    	Quiz quiz = new Quiz();
+    	// フォームのデータをエンティティにコピーする
+    	BeanUtils.copyProperties(quizForm, quiz);
         quizService.updateQuiz(quiz);
         return "redirect:/quizzes/list";
     }

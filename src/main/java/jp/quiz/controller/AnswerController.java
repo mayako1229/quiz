@@ -36,10 +36,6 @@ public class AnswerController {
     public Map<String, Object> checkAnswer(@RequestParam String id, @RequestParam String choice, @RequestParam String choiceNum, HttpSession session) {
         //System.out.println("id : " + id);
         Long quizId = Long.parseLong(id);
-        System.out.println(10 + 20 + "30");
-        System.out.println("Java".substring(1, 3));
-        String s = "Hello, World!";
-        System.out.println(s.length());
         return quizService.checkAnswer(quizId, choice, choiceNum, session);
     }
 }

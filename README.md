@@ -16,7 +16,7 @@
 
 - クイズの新規登録／編集／削除
 - クイズ一覧表示
-- クイズのランダム出題（5問）
+- クイズのランダム出題（10問）
 - 解答後に解説を表示
 - クイズの作成日時／更新日時の管理
 - Thymeleafテンプレートによる画面描画
@@ -47,6 +47,19 @@ cd quiz
 ```
 
 ### 2. PostgreSQL の設定
+
+データベース quiz を作成します
+
+```bash
+psql -U postgres
+
+```
+```sql
+CREATE DATABASE quiz;
+
+```
+schema.sql→data.sqlの順に実行します
+
 
 src/main/resources/application.properties にデータベース接続情報を設定します
 
@@ -92,9 +105,11 @@ quiz
 ├── entity/         # エンティティクラス
 ├── repository/     # DBアクセス層
 ├── service/        # サービス層
+├── form/           # フォーム
 ├── templates/      # Thymeleafテンプレート
-├── static/css/     # スタイルシート
-├── static/js/      # JavaScript
+├── resource/sql/   # SQL
+├── resource/static/css/     # スタイルシート
+├── resource/static/js/      # JavaScript
 └── application.properties # 設定ファイル
 ```
 

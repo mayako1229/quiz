@@ -27,6 +27,6 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
      * 
      * @return ランダムに選ばれたクイズのリスト
      */
-    @Query(value = "SELECT * FROM quizzes ORDER BY RANDOM() LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT * FROM quizzes ORDER BY RANDOM() LIMIT 10", nativeQuery = true)
     List<Quiz> findRandom10Quizzes();
 }
