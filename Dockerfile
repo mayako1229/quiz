@@ -1,14 +1,16 @@
-# Java 17 がインストールされたイメージを使用
-FROM eclipse-temurin:17-jre
-
-# 作業ディレクトリを作成
+# Stage 1: Build the application using Maven
+FROM maven:3.8.6-openjdk-17 AS build
 WORKDIR /app
+# pom.xml とソースをコピー
+COPY pom.xml .
+COPY src ./src
+# テストはスキップしてビルド
+RUN mvn clean package -DskipTests
 
-# jar ファイルをコンテナにコピー
-COPY target/quiz-0.0.1-SNAPSHOT.jar app.jar
-
-# ポート番号（例：8080）を公開
+# Stage 2: Run the application
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+# Stage 1 でビルドした JAR ファイルをコピー
+COPY --from=build /app/target/quiz-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# アプリの起動
 ENTRYPOINT ["java", "-jar", "app.jar"]
