@@ -11,7 +11,7 @@ services:
       - key: SPRING_PROFILES_ACTIVE
         value: render
       - key: DB_HOST
-        value: dpg-cvu7u0s9c44c73ftbbgg-a
+        value: dpg-cvu7u0s9c44c73ftbbgg-a.onrender.com
       - key: DB_PORT
         value: "5432"
       - key: DB_NAME
