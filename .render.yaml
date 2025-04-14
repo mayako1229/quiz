@@ -11,12 +11,12 @@ services:
       - key: SPRING_PROFILES_ACTIVE
         value: render
       - key: DB_HOST
-        value: your-db-host.onrender.com
+        value: dpg-cvu7u0s9c44c73ftbbgg-a
       - key: DB_PORT
         value: "5432"
       - key: DB_NAME
-        value: your-db-name
+        value: quiz_ruq7
       - key: DB_USERNAME
-        value: your-db-username
+        value: quiz_ruq7_user
       - key: DB_PASSWORD
-        value: your-db-password
+        value: nhrEGc8nyvcu4LBEEvR7fnykOyHYxCr7
