@@ -292,12 +292,16 @@ input[type="radio"]:checked+label {
 	}
 
 	.modal-content {
-		width: 90%;
+/*		width: 95%;*/
 		/* スマホでは画面幅の90% */
 		margin: 20% auto;
 		/* 上下マージンを調整 */
 		padding: 20px;
 	}
+	
+	.quiz-form {
+		width: 96%;
+		}
 }
 
 /* ヘッダーのスタイル */
